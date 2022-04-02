@@ -1,0 +1,52 @@
+
+{% extends 'base.html' %}
+
+{% block title %} Proxmox, uw pincode.... {% endblock %}
+
+{% block content %}
+  <style>
+    body{
+      background-image: url("https://images.pexels.com/photos/2033997/pexels-photo-2033997.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    }
+    .btn-primary{
+      width: 100%;
+    }
+    .login-form{
+    background:#1a11117a;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding: 100px;
+    border-radius: 50px;
+    color: white;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  }
+  .login-heading{
+    text-align: center;
+    margin-top: 20px;
+  }
+  .container{
+    background: #09090a4f;
+    border-radius: 50px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.38);
+  }
+  </style>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="login-form">
+            <form method="post" action="{{ url_for('index') }}" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="inputPincode">Pincode</label>
+                <input type="password" class="form-control" id="inputPincode" name="inputPincode" aria-describedby="pincodeHelp" placeholder="Voer uw pincode in">
+                <small id="pincodeHelp" class="form-text text-muted">Gebruik uw pincode om in te loggen.</small>
+              </div>
+              <button type="submit" class="btn btn-primary">Inloggen</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}
