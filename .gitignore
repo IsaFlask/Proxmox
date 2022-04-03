@@ -1,9 +1,9 @@
 .DS_Store
 .env
-.flaskenv
 *.pyc
 *.pyo
 Proxmox
+dev
 env/
 venv/
 .venv/

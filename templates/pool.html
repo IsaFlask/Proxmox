@@ -1,0 +1,65 @@
+ {% extends 'base2.html' %} 
+ 
+ {% block title %} Proxmox, computer pools {% endblock %}
+ 
+ {% block content %} 
+ 
+ <h3 style="padding: 20px 0">Pool {{ request.args.get('p') }}</h3>
+
+<form id="een_computer" method="post" action="/pool?p={{ request.args.get('p') }}">
+    <input type="hidden" id="current_pc" name="current_pc">
+</form>
+
+<div class="row clearfix">
+    
+    {% if pools %}     
+        {% for pool in pools %}       
+        {% if pool.name == request.args.get('p') %}     
+            {% for computer in pool.computers %}
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="card product_item">
+                    <div class="body">
+                        <div class="cp_img">
+                            {% if computer.on == True %}
+                            <div class="status-on">OS: {{ computer.os }}, running</div>
+                            <img src="{{ url_for('static', filename= computer.os + '.jpg') }}" alt="{{ computer.os }}" class="img-fluid">
+                            <div class="hover">                                
+                                <a href="#" class="btn btn-danger  waves-effect comp" pc="{{ computer.name }}"><i class="zmdi zmdi-stop"></i></a>
+                            </div>
+                            {% else %}
+                            <div class="status-off">OS: {{ computer.os }}, stopped</div>
+                            <img src="{{ url_for('static', filename= computer.os + '.jpg') }}" alt="{{ computer.os }}" class="img-fluid">
+                            <div class="hover">                                
+                                <a href="#" class="btn btn-success  waves-effect comp" pc="{{ computer.name }}"><i class="zmdi zmdi-play"></i></a>
+                            </div>                                                        
+                            {% endif %}
+                        </div>
+                        <div class="product_details">
+                            <h5>{{ computer.name }}.proxmox.nl</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>         
+            {% endfor %}
+        {% endif %}        
+        {% endfor %}
+     </div>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}
+
+{% block script %} 
+<script>
+    $(document).ready(function() {
+        $(".comp").click(function() {
+            var pc = $(this).attr('pc');
+            $('#current_pc').val(pc);
+            $("#een_computer").submit();
+            return false;
+        })
+    });
+</script>
+{% endblock %}
