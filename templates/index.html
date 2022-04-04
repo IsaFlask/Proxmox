@@ -6,7 +6,7 @@
 {% block content %}
   <style>
     body{
-      background-image: url("https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?cs=srgb&dl=pexels-designecologist-1779487.jpg&fm=jpg");
+      background-image: url("{{ url_for('static', filename= 'achtergrond.jpg') }}");
     }
     .btn-primary{
       width: 100%;
